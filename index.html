@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#111111" />
+  <meta name="description" content="Simple personal expense tracker" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="My Expenses" />
+  <title>My Expenses</title>
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="./icon.svg" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div id="login-screen" class="login-screen">
+    <div class="card login-card">
+      <p class="eyebrow">PERSONAL EXPENSES</p>
+      <h1>My Expenses</h1>
+      <p class="help">Welcome back</p>
+      <form id="login-form" class="form-card">
+        <label for="auth-email">Email</label>
+        <input type="email" id="auth-email" autocomplete="username" required placeholder="name@example.com" />
+        <label for="auth-password">Password</label>
+        <input type="password" id="auth-password" autocomplete="current-password" required placeholder="••••••••" />
+        <p class="login-error" id="login-error" hidden></p>
+        <div class="form-actions">
+          <button type="submit" class="btn primary" id="auth-login">Log In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="app" id="app" hidden>
+    <header class="top">
+      <p class="eyebrow">PERSONAL EXPENSES</p>
+      <div class="title-row">
+        <h1>My Expenses</h1>
+        <button type="button" class="icon-btn" id="open-settings" aria-label="Settings">⚙️</button>
+      </div>
+      <nav class="tabs" aria-label="Main sections">
+        <button type="button" class="tab is-active" data-view="expenses">Expenses</button>
+        <button type="button" class="tab" data-view="summary">Summary</button>
+        <button type="button" class="tab" data-view="reports">Reports</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="view-expenses" class="view is-visible">
+        <div class="month-nav card">
+          <button type="button" class="nav-arrow" id="prev-month" aria-label="Previous month">‹</button>
+          <h2 id="month-label">September 2026</h2>
+          <button type="button" class="nav-arrow" id="next-month" aria-label="Next month">›</button>
+        </div>
+
+        <div class="total-card card">
+          <p class="label">TOTAL SPENDING</p>
+          <p class="big-total" id="month-total">₹0</p>
+          <p class="muted" id="month-count">0 expenses</p>
+        </div>
+
+        <form id="expense-form" class="card form-card">
+          <h2 id="form-title">ADD EXPENSE</h2>
+          <label for="exp-date">Date</label>
+          <input type="date" id="exp-date" required />
+          <label for="exp-amount">Amount (₹)</label>
+          <input type="number" id="exp-amount" inputmode="decimal" min="0" step="0.01" required placeholder="500" />
+          <label for="exp-category">Category</label>
+          <select id="exp-category" required></select>
+          <label for="exp-desc">What was it for?</label>
+          <input type="text" id="exp-desc" required maxlength="120" placeholder="Groceries" autocomplete="off" />
+          <div class="form-actions">
+            <button type="submit" class="btn primary" id="form-submit">+ Add Expense</button>
+            <button type="button" class="btn ghost hidden" id="form-cancel">Cancel</button>
+          </div>
+          <p class="toast" id="form-toast" hidden></p>
+        </form>
+
+        <div class="list-head">
+          <h2>THIS MONTH</h2>
+          <button type="button" class="text-btn" id="clear-month">Clear</button>
+        </div>
+
+        <ul id="expense-list" class="expense-list"></ul>
+        <p class="empty" id="expenses-empty" hidden>No expenses this month.</p>
+      </section>
+
+      <section id="view-summary" class="view">
+        <div class="card">
+          <h2>CATEGORY BREAKDOWN</h2>
+          <p class="muted" id="breakdown-month"></p>
+          <ul id="category-breakdown" class="breakdown"></ul>
+        </div>
+
+        <div class="card">
+          <h2>MONTHLY SUMMARY</h2>
+          <ul id="monthly-summary" class="month-summary"></ul>
+          <p class="empty" id="summary-empty" hidden>No expenses saved yet.</p>
+        </div>
+      </section>
+
+      <section id="view-reports" class="view">
+        <div class="card">
+          <h2>DOWNLOAD REPORT</h2>
+          <p class="help">What do you want to download?</p>
+          <div class="choice-grid" role="radiogroup" aria-label="Report type">
+            <button type="button" class="choice is-active" data-report="date">Single Date</button>
+            <button type="button" class="choice" data-report="month">Month</button>
+            <button type="button" class="choice" data-report="year">Year</button>
+            <button type="button" class="choice" data-report="range">Custom Range</button>
+            <button type="button" class="choice" data-report="all">All Expenses</button>
+          </div>
+          <div id="report-fields"></div>
+          <div id="report-preview" class="preview"></div>
+          <div class="form-actions">
+            <button type="button" class="btn primary" id="download-csv">Download CSV</button>
+            <button type="button" class="btn secondary" id="download-pdf">Download PDF</button>
+          </div>
+          <p class="muted small">PDF uses “Rs.” instead of ₹ so it opens on every phone. CSV keeps ₹.</p>
+        </div>
+      </section>
+
+      <section id="view-settings" class="view">
+        <div class="card">
+          <h2>CLOUD BACKUP</h2>
+          <p class="help" id="sync-status">Checking connection...</p>
+          <p id="auth-who" class="muted" hidden></p>
+          <div id="logged-in-actions">
+            <button type="button" class="btn secondary" id="auth-sync">Sync Now</button><br><br>
+            <button type="button" class="btn ghost" id="auth-logout">Log Out</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>SETTINGS</h2>
+          <p class="help">Backup keeps your expenses safe if you change phones.</p>
+          <button type="button" class="btn primary" id="export-backup">⬇️ Export Backup</button><br><br>
+          <button type="button" class="btn secondary" id="import-backup">⬆️ Import Backup</button><br><br>
+          <input type="file" id="import-file" accept="application/json,.json" hidden />
+          <button type="button" class="btn danger" id="delete-all">Delete All Data</button>
+          <p class="muted small">Deleting cannot be undone unless you have a backup file.</p>
+        </div>
+
+        <button type="button" class="btn ghost" id="back-from-settings">Back to expenses</button>
+      </section>
+    </main>
+  </div>
+
+  <div id="modal" class="modal" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <h2 id="modal-title">Please confirm</h2>
+      <p id="modal-text"></p>
+      <div class="form-actions">
+        <button type="button" class="btn danger" id="modal-ok">Continue</button>
+        <button type="button" class="btn ghost" id="modal-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="./config.js"></script>
+  <script src="./script.js"></script>
+</body>
+</html>

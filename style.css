@@ -1,0 +1,932 @@
+:root {
+  --bg: #f3f4f6;
+  --card: #ffffff;
+  --text: #111111;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --primary: #111111;
+  --danger: #b91c1c;
+  --success: #166534;
+  --radius: 16px;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  --tap: 48px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 17px;
+  line-height: 1.4;
+  overflow-x: hidden;
+}
+
+body {
+  padding:
+    env(safe-area-inset-top)
+    env(safe-area-inset-right)
+    env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
+}
+
+/* =========================================================
+   APP CONTAINER
+   ========================================================= */
+
+.app {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 16px 14px 40px;
+}
+
+.top {
+  margin-bottom: 14px;
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+h1 {
+  margin: 4px 0 12px;
+  font-size: 28px;
+}
+
+h2 {
+  margin: 0 0 12px;
+  font-size: 15px;
+  letter-spacing: 0.04em;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.icon-btn,
+.nav-arrow,
+.tab,
+.btn,
+.text-btn,
+.choice,
+.row-btn {
+  font: inherit;
+  cursor: pointer;
+}
+
+.icon-btn,
+.nav-arrow {
+  width: var(--tap);
+  height: var(--tap);
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 12px;
+  font-size: 22px;
+}
+
+.icon-btn:hover,
+.nav-arrow:hover {
+  background: #f9fafb;
+}
+
+.btn {
+  min-height: var(--tap);
+  border-radius: 12px;
+  border: 0;
+  font-weight: 700;
+  width: 100%;
+  padding: 10px 14px;
+}
+
+.btn.primary {
+  background: var(--primary);
+  color: #fff;
+}
+
+.btn.primary:hover {
+  background: #2b2b2b;
+}
+
+.btn.secondary {
+  background: #fff;
+  color: #111;
+  border: 1px solid #111;
+}
+
+.btn.secondary:hover {
+  background: #f9fafb;
+}
+
+.btn.ghost {
+  background: #fff;
+  color: #111;
+  border: 1px solid var(--border);
+}
+
+.btn.ghost:hover {
+  background: #f9fafb;
+}
+
+.btn.danger {
+  background: #fff;
+  color: var(--danger);
+  border: 1px solid #fecaca;
+}
+
+.btn.danger:hover {
+  background: #fef2f2;
+}
+
+.text-btn {
+  background: none;
+  border: 0;
+  color: var(--danger);
+  padding: 8px;
+  font-weight: 700;
+}
+
+.text-btn:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   TABS
+   ========================================================= */
+
+.tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 6px;
+  background: #eceff3;
+  padding: 4px;
+  border-radius: 14px;
+}
+
+.tab {
+  min-height: 44px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #374151;
+  font-weight: 600;
+}
+
+.tab.is-active {
+  background: #fff;
+  color: #111;
+  box-shadow: var(--shadow);
+}
+
+
+/* =========================================================
+   VIEWS
+   ========================================================= */
+
+.view {
+  display: none;
+}
+
+.view.is-visible {
+  display: block;
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+}
+
+
+/* =========================================================
+   MONTH NAVIGATION
+   ========================================================= */
+
+.month-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.month-nav h2 {
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: 0;
+  text-align: center;
+  flex: 1;
+}
+
+
+/* =========================================================
+   TOTAL CARD
+   ========================================================= */
+
+.label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.big-total {
+  margin: 6px 0 4px;
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+
+/* =========================================================
+   TEXT
+   ========================================================= */
+
+.muted {
+  color: var(--muted);
+  margin: 0;
+}
+
+.small {
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+.help {
+  margin: 0 0 12px;
+  color: var(--muted);
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.form-card label {
+  display: block;
+  margin: 12px 0 6px;
+  font-weight: 600;
+}
+
+.form-card label:first-of-type {
+  margin-top: 0;
+}
+
+input,
+select {
+  width: 100%;
+  min-height: var(--tap);
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  padding: 10px 12px;
+  font: inherit;
+  background: #fff;
+  color: inherit;
+}
+
+input::placeholder {
+  color: #9ca3af;
+}
+
+input:focus,
+select:focus,
+button:focus-visible {
+  outline: 3px solid #111;
+  outline-offset: 2px;
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.toast {
+  margin: 10px 0 0;
+  color: var(--success);
+  font-weight: 600;
+}
+
+.hidden {
+  display: none !important;
+}
+
+
+/* =========================================================
+   EXPENSE LIST HEADER
+   ========================================================= */
+
+.list-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 8px 4px;
+}
+
+.list-head h2 {
+  margin: 0;
+}
+
+
+/* =========================================================
+   EXPENSE LIST
+   ========================================================= */
+
+.expense-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.expense-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 6px 12px;
+  align-items: center;
+
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+
+  padding: 14px;
+  margin-bottom: 8px;
+
+  box-shadow: var(--shadow);
+}
+
+.exp-main {
+  min-width: 0;
+}
+
+.exp-main strong {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.meta {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 3px;
+}
+
+.amount {
+  font-weight: 800;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.row-actions {
+  grid-column: 1 / -1;
+
+  display: flex;
+  gap: 8px;
+
+  border-top: 1px solid var(--border);
+  padding-top: 8px;
+  margin-top: 4px;
+}
+
+.row-btn {
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 9px;
+  min-height: 38px;
+  padding: 6px 12px;
+  font-weight: 600;
+}
+
+.row-btn:hover {
+  background: #f9fafb;
+}
+
+.row-btn.delete {
+  color: var(--danger);
+  border-color: #fecaca;
+}
+
+.row-btn.delete:hover {
+  background: #fef2f2;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 24px 10px;
+  margin: 0;
+}
+
+
+/* =========================================================
+   CATEGORY BREAKDOWN
+   ========================================================= */
+
+.breakdown {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.break-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.break-row:last-child {
+  border-bottom: 0;
+}
+
+.bar-wrap {
+  width: 100%;
+  height: 8px;
+  background: #eef0f2;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 7px;
+}
+
+.bar {
+  height: 100%;
+  background: #111;
+  border-radius: inherit;
+  min-width: 8px;
+}
+
+
+/* =========================================================
+   MONTHLY SUMMARY
+   ========================================================= */
+
+.month-summary {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.month-summary li {
+  border-bottom: 1px solid var(--border);
+}
+
+.month-summary li:last-child {
+  border-bottom: 0;
+}
+
+.summary-row {
+  width: 100%;
+  min-height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  padding: 8px 0;
+
+  background: transparent;
+  border: 0;
+
+  color: inherit;
+  font: inherit;
+
+  cursor: pointer;
+  text-align: left;
+}
+
+.summary-row:hover {
+  background: #fafafa;
+}
+
+.summary-row strong {
+  min-width: 0;
+}
+
+
+/* =========================================================
+   REPORTS
+   ========================================================= */
+
+.choice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.choice {
+  min-height: 46px;
+
+  border: 1px solid var(--border);
+  border-radius: 11px;
+
+  background: #fff;
+  color: #374151;
+
+  font-weight: 600;
+  padding: 8px;
+}
+
+.choice.is-active {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+.choice:hover:not(.is-active) {
+  background: #f9fafb;
+}
+
+#report-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+#report-fields label {
+  margin: 8px 0 6px;
+  font-weight: 600;
+}
+
+#report-fields label:first-child {
+  margin-top: 0;
+}
+
+.preview {
+  background: #f9fafb;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 13px;
+  margin-top: 14px;
+  margin-bottom: 14px;
+}
+
+.preview p {
+  margin: 5px 0;
+}
+
+.year-lines {
+  list-style: none;
+  margin: 10px 0;
+  padding: 0;
+  border-top: 1px solid var(--border);
+}
+
+.year-lines li {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+
+  padding: 7px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+
+/* =========================================================
+   SETTINGS
+   ========================================================= */
+
+#view-settings .card {
+  margin-top: 4px;
+}
+
+#view-settings .btn {
+  margin-bottom: 0;
+}
+
+
+/* =========================================================
+   LOGIN SCREEN
+   ========================================================= */
+
+#login-screen {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding:
+    24px
+    16px
+    40px;
+}
+
+#login-screen[hidden] {
+  display: none;
+}
+
+.login-container {
+  width: 100%;
+  max-width: 420px;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 22px;
+}
+
+.login-header .eyebrow {
+  margin-bottom: 6px;
+}
+
+.login-header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.login-card {
+  width: 100%;
+}
+
+.login-card label {
+  display: block;
+  margin: 12px 0 6px;
+  font-weight: 600;
+}
+
+.login-card label:first-of-type {
+  margin-top: 0;
+}
+
+.login-error {
+  color: var(--danger);
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin: 12px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.login-error:empty {
+  display: none;
+}
+
+
+/* =========================================================
+   AUTH / ACCOUNT AREA
+   ========================================================= */
+
+.auth-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+
+.auth-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.auth-user {
+  min-width: 0;
+}
+
+.auth-user-label {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.auth-who {
+  margin-top: 2px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.auth-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.auth-actions .btn {
+  width: auto;
+  flex: 1;
+}
+
+
+/* =========================================================
+   SYNC STATUS
+   ========================================================= */
+
+#sync-status {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 8px 0 0;
+  min-height: 18px;
+}
+
+.sync-status {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.sync-status.online {
+  color: var(--success);
+}
+
+.sync-status.error {
+  color: var(--danger);
+}
+
+
+/* =========================================================
+   MODAL
+   ========================================================= */
+
+.modal {
+  position: fixed;
+  inset: 0;
+
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal.is-open {
+  display: flex;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 420px;
+
+  background: #fff;
+
+  border: 1px solid var(--border);
+  border-radius: 18px;
+
+  padding: 20px;
+
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.18);
+}
+
+.modal-card h2 {
+  font-size: 20px;
+  letter-spacing: 0;
+  margin-bottom: 8px;
+}
+
+.modal-card p {
+  color: #4b5563;
+  margin: 0;
+}
+
+.modal-card .form-actions {
+  margin-top: 20px;
+}
+
+
+/* =========================================================
+   PWA / GENERAL
+   ========================================================= */
+
+button,
+input,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  touch-action: manipulation;
+}
+
+input,
+select {
+  appearance: auto;
+}
+
+
+/* =========================================================
+   TABLET / DESKTOP
+   ========================================================= */
+
+@media (min-width: 600px) {
+
+  body {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .app {
+    max-width: 560px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .form-actions {
+    flex-direction: row;
+  }
+
+  .form-actions .btn {
+    flex: 1;
+  }
+
+  .choice-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+}
+
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+  html,
+  body {
+    font-size: 16px;
+  }
+
+  .app {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  h1 {
+    font-size: 25px;
+  }
+
+  .big-total {
+    font-size: 32px;
+  }
+
+  .card {
+    padding: 14px;
+  }
+
+  .choice-grid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+
+}
