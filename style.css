@@ -11,22 +11,6 @@
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   --tap: 48px;
 }
-body {
-    margin: 0;
-    min-height: 100vh;
-
-    background:
-        linear-gradient(
-            rgba(248, 247, 244, 0.82),
-            rgba(248, 247, 244, 0.82)
-        ),
-        url("expense-background.png");
-
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-}
 
 *,
 *::before,
@@ -38,12 +22,35 @@ html,
 body {
   margin: 0;
   padding: 0;
-  background: var(--bg);
   color: var(--text);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
   font-size: 17px;
   line-height: 1.4;
   overflow-x: hidden;
+}
+.card,
+.auth-card,
+.expense-item {
+  background: rgba(255, 255, 255, 0.94);
+}
+.login-card {
+  background: rgba(255, 255, 255, 0.94);
+}
+
+body {
+  min-height: 100vh;
+
+  background:
+    linear-gradient(
+      rgba(248, 247, 244, 0.82),
+      rgba(248, 247, 244, 0.82)
+    ),
+    url("expense-background.png");
+
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 body {
