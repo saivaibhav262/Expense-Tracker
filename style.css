@@ -70,6 +70,7 @@ body {
   max-width: 480px;
   margin: 0 auto;
   padding: 16px 14px 40px;
+  background: transparent;
 }
 
 .top {
