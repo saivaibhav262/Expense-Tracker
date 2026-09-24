@@ -11,6 +11,22 @@
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   --tap: 48px;
 }
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            rgba(248, 247, 244, 0.82),
+            rgba(248, 247, 244, 0.82)
+        ),
+        url("assets/expense-background.png");
+
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
 
 *,
 *::before,
