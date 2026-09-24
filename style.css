@@ -1,16 +1,31 @@
 :root {
   --bg: #f3f4f6;
-  --card: #ffffff;
+  --card: rgba(255, 255, 255, 0.58);
   --text: #111111;
   --muted: #6b7280;
-  --border: #e5e7eb;
+  --border: rgba(255, 255, 255, 0.72);
   --primary: #111111;
   --danger: #b91c1c;
   --success: #166534;
+
   --radius: 16px;
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
   --tap: 48px;
+
+  --glass-bg: rgba(255, 255, 255, 0.58);
+  --glass-bg-strong: rgba(255, 255, 255, 0.70);
+  --glass-border: rgba(255, 255, 255, 0.78);
+
+  --glass-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+
+  --glass-blur: blur(20px) saturate(135%);
 }
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
 
 *,
 *::before,
@@ -18,75 +33,59 @@
   box-sizing: border-box;
 }
 
+
+/* =========================================================
+   HTML / BODY
+   ========================================================= */
+
+html {
+  min-height: 100%;
+  background: #f3f4f6;
+}
+
 html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   min-height: 100vh;
 
+  color: var(--text);
+
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+
+  font-size: 17px;
+  line-height: 1.4;
+
+  overflow-x: hidden;
+
   background:
     linear-gradient(
-      rgba(248, 247, 244, 0.35),
-      rgba(248, 247, 244, 0.35)
+      rgba(248, 247, 244, 0.30),
+      rgba(248, 247, 244, 0.30)
     ),
     url("expense-background.png");
 
   background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background-position: center center;
   background-repeat: no-repeat;
-}
-input,
-select {
-  background: rgba(255, 255, 255, 0.52);
+  background-attachment: fixed;
 
-  border: 1px solid rgba(255, 255, 255, 0.8);
-
-  box-shadow:
-    inset 0 1px 2px rgba(0, 0, 0, 0.03),
-    0 2px 10px rgba(0, 0, 0, 0.03);
-
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-input:focus,
-select:focus {
-  outline: none;
-
-  background: rgba(255, 255, 255, 0.72);
-
-  border-color: rgba(17, 17, 17, 0.25);
-
-  box-shadow:
-    0 0 0 3px rgba(17, 17, 17, 0.07),
-    0 4px 14px rgba(0, 0, 0, 0.05);
-}
-/* =========================================================
-   GLASS CARDS
-   ========================================================= */
-
-.card,
-.auth-card,
-.expense-item,
-.login-card {
-  background: rgba(255, 255, 255, 0.68);
-
-  border: 1px solid rgba(255, 255, 255, 0.75);
-
-  box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.06),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-}
-
-body {
   padding:
     env(safe-area-inset-top)
     env(safe-area-inset-right)
     env(safe-area-inset-bottom)
     env(safe-area-inset-left);
 }
+
 
 /* =========================================================
    APP CONTAINER
@@ -95,8 +94,11 @@ body {
 .app {
   width: 100%;
   max-width: 480px;
+
   margin: 0 auto;
+
   padding: 16px 14px 40px;
+
   background: transparent;
 }
 
@@ -106,9 +108,12 @@ body {
 
 .eyebrow {
   margin: 0;
+
   font-size: 12px;
   letter-spacing: 0.08em;
+
   color: var(--muted);
+
   font-weight: 700;
 }
 
@@ -116,6 +121,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   gap: 8px;
 }
 
@@ -126,8 +132,42 @@ h1 {
 
 h2 {
   margin: 0 0 12px;
+
   font-size: 15px;
   letter-spacing: 0.04em;
+}
+
+
+/* =========================================================
+   GLASS SURFACES
+   ========================================================= */
+
+.card,
+.auth-card,
+.expense-item,
+.login-card,
+.modal-card {
+  background: var(--glass-bg);
+
+  border: 1px solid var(--glass-border);
+
+  box-shadow: var(--glass-shadow);
+
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+}
+
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.card {
+  border-radius: var(--radius);
+
+  padding: 16px;
+
+  margin-bottom: 14px;
 }
 
 
@@ -150,29 +190,57 @@ h2 {
 .nav-arrow {
   width: var(--tap);
   height: var(--tap);
-  border: 1px solid var(--border);
-  background: #fff;
+
+  border: 1px solid rgba(255, 255, 255, 0.75);
+
+  background: rgba(255, 255, 255, 0.55);
+
   border-radius: 12px;
+
   font-size: 22px;
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 3px 12px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .icon-btn:hover,
 .nav-arrow:hover {
-  background: #f9fafb;
+  background: rgba(255, 255, 255, 0.75);
 }
 
 .btn {
   min-height: var(--tap);
+
   border-radius: 12px;
-  border: 0;
+
   font-weight: 700;
+
   width: 100%;
+
   padding: 10px 14px;
+
+  transition:
+    transform 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
 }
 
 .btn.primary {
-  background: var(--primary);
-  color: #fff;
+  background: #111111;
+  color: #ffffff;
+
+  border: 1px solid #111111;
+
+  box-shadow:
+    0 5px 14px rgba(0, 0, 0, 0.15);
 }
 
 .btn.primary:hover {
@@ -180,40 +248,59 @@ h2 {
 }
 
 .btn.secondary {
-  background: #fff;
-  color: #111;
-  border: 1px solid #111;
+  background: rgba(255, 255, 255, 0.55);
+
+  color: #111111;
+
+  border: 1px solid rgba(17, 17, 17, 0.45);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .btn.secondary:hover {
-  background: #f9fafb;
+  background: rgba(255, 255, 255, 0.75);
 }
 
 .btn.ghost {
-  background: #fff;
-  color: #111;
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.48);
+
+  color: #111111;
+
+  border: 1px solid rgba(255, 255, 255, 0.75);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .btn.ghost:hover {
-  background: #f9fafb;
+  background: rgba(255, 255, 255, 0.72);
 }
 
 .btn.danger {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.50);
+
   color: var(--danger);
-  border: 1px solid #fecaca;
+
+  border: 1px solid rgba(185, 28, 28, 0.25);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .btn.danger:hover {
-  background: #fef2f2;
+  background: rgba(254, 242, 242, 0.75);
 }
 
 .text-btn {
-  background: none;
+  background: transparent;
+
   border: 0;
+
   color: var(--danger);
+
   padding: 8px;
+
   font-weight: 700;
 }
 
@@ -228,26 +315,48 @@ h2 {
 
 .tabs {
   display: grid;
+
   grid-template-columns: 1fr 1fr 1fr;
+
   gap: 6px;
-  background: #eceff3;
+
+  background: rgba(255, 255, 255, 0.42);
+
   padding: 4px;
+
   border-radius: 14px;
+
+  border: 1px solid rgba(255, 255, 255, 0.65);
+
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.04);
 }
 
 .tab {
   min-height: 44px;
+
   border: 0;
+
   border-radius: 10px;
+
   background: transparent;
+
   color: #374151;
+
   font-weight: 600;
 }
 
 .tab.is-active {
-  background: #fff;
-  color: #111;
-  box-shadow: var(--shadow);
+  background: rgba(255, 255, 255, 0.82);
+
+  color: #111111;
+
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 
@@ -265,55 +374,54 @@ h2 {
 
 
 /* =========================================================
-   CARDS
-   ========================================================= */
-
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 16px;
-  margin-bottom: 14px;
-  box-shadow: var(--shadow);
-}
-
-
-/* =========================================================
    MONTH NAVIGATION
    ========================================================= */
 
 .month-nav {
   display: flex;
+
   align-items: center;
   justify-content: space-between;
+
   gap: 8px;
 }
 
 .month-nav h2 {
   margin: 0;
+
   font-size: 18px;
+
   letter-spacing: 0;
+
   text-align: center;
+
   flex: 1;
 }
 
 
 /* =========================================================
-   TOTAL CARD
+   TOTAL
    ========================================================= */
 
 .label {
   margin: 0;
+
   color: var(--muted);
+
   font-size: 13px;
+
   font-weight: 700;
+
   letter-spacing: 0.06em;
 }
 
 .big-total {
   margin: 6px 0 4px;
+
   font-size: 36px;
+
   font-weight: 800;
+
   letter-spacing: -0.02em;
 }
 
@@ -334,6 +442,7 @@ h2 {
 
 .help {
   margin: 0 0 12px;
+
   color: var(--muted);
 }
 
@@ -344,7 +453,9 @@ h2 {
 
 .form-card label {
   display: block;
+
   margin: 12px 0 6px;
+
   font-weight: 600;
 }
 
@@ -352,16 +463,40 @@ h2 {
   margin-top: 0;
 }
 
+
+/* =========================================================
+   GLASS INPUTS
+   ========================================================= */
+
 input,
 select {
   width: 100%;
+
   min-height: var(--tap);
-  border: 1px solid #d1d5db;
+
+  border: 1px solid rgba(255, 255, 255, 0.78);
+
   border-radius: 12px;
+
   padding: 10px 12px;
+
   font: inherit;
-  background: #fff;
-  color: inherit;
+
+  color: var(--text);
+
+  background: rgba(255, 255, 255, 0.42);
+
+  box-shadow:
+    inset 0 1px 2px rgba(255, 255, 255, 0.65),
+    0 3px 12px rgba(0, 0, 0, 0.035);
+
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 input::placeholder {
@@ -369,22 +504,44 @@ input::placeholder {
 }
 
 input:focus,
-select:focus,
+select:focus {
+  outline: none;
+
+  background: rgba(255, 255, 255, 0.68);
+
+  border-color: rgba(17, 17, 17, 0.28);
+
+  box-shadow:
+    0 0 0 3px rgba(17, 17, 17, 0.07),
+    inset 0 1px 2px rgba(255, 255, 255, 0.7);
+}
+
 button:focus-visible {
-  outline: 3px solid #111;
+  outline: 3px solid rgba(17, 17, 17, 0.30);
+
   outline-offset: 2px;
 }
 
+
+/* =========================================================
+   FORM ACTIONS
+   ========================================================= */
+
 .form-actions {
   display: flex;
+
   flex-direction: column;
+
   gap: 8px;
+
   margin-top: 16px;
 }
 
 .toast {
   margin: 10px 0 0;
+
   color: var(--success);
+
   font-weight: 600;
 }
 
@@ -399,8 +556,11 @@ button:focus-visible {
 
 .list-head {
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
+
   margin: 8px 4px;
 }
 
@@ -415,24 +575,26 @@ button:focus-visible {
 
 .expense-list {
   list-style: none;
+
   margin: 0;
+
   padding: 0;
 }
 
 .expense-item {
   display: grid;
+
   grid-template-columns: minmax(0, 1fr) auto;
+
   gap: 6px 12px;
+
   align-items: center;
 
-  background: #fff;
-  border: 1px solid var(--border);
   border-radius: 14px;
 
   padding: 14px;
-  margin-bottom: 8px;
 
-  box-shadow: var(--shadow);
+  margin-bottom: 8px;
 }
 
 .exp-main {
@@ -441,58 +603,83 @@ button:focus-visible {
 
 .exp-main strong {
   display: block;
+
   overflow-wrap: anywhere;
 }
 
 .meta {
   color: var(--muted);
+
   font-size: 14px;
+
   margin-top: 3px;
 }
 
 .amount {
   font-weight: 800;
+
   white-space: nowrap;
+
   text-align: right;
 }
+
+
+/* =========================================================
+   EXPENSE ROW ACTIONS
+   ========================================================= */
 
 .row-actions {
   grid-column: 1 / -1;
 
   display: flex;
+
   gap: 8px;
 
-  border-top: 1px solid var(--border);
+  border-top: 1px solid rgba(255, 255, 255, 0.65);
+
   padding-top: 8px;
+
   margin-top: 4px;
 }
 
 .row-btn {
-  border: 1px solid var(--border);
-  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+
+  background: rgba(255, 255, 255, 0.48);
+
   border-radius: 9px;
+
   min-height: 38px;
+
   padding: 6px 12px;
+
   font-weight: 600;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .row-btn:hover {
-  background: #f9fafb;
+  background: rgba(255, 255, 255, 0.72);
 }
 
 .row-btn.delete {
   color: var(--danger);
-  border-color: #fecaca;
+
+  border-color: rgba(185, 28, 28, 0.22);
 }
 
 .row-btn.delete:hover {
-  background: #fef2f2;
+  background: rgba(254, 242, 242, 0.72);
 }
 
 .empty {
   text-align: center;
+
   color: var(--muted);
+
   padding: 24px 10px;
+
   margin: 0;
 }
 
@@ -503,18 +690,24 @@ button:focus-visible {
 
 .breakdown {
   list-style: none;
+
   margin: 0;
+
   padding: 0;
 }
 
 .break-row {
   display: grid;
+
   grid-template-columns: minmax(0, 1fr) auto;
+
   gap: 12px;
+
   align-items: center;
 
   padding: 10px 0;
-  border-bottom: 1px solid var(--border);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.65);
 }
 
 .break-row:last-child {
@@ -523,17 +716,25 @@ button:focus-visible {
 
 .bar-wrap {
   width: 100%;
+
   height: 8px;
-  background: #eef0f2;
+
+  background: rgba(255, 255, 255, 0.45);
+
   border-radius: 999px;
+
   overflow: hidden;
+
   margin-top: 7px;
 }
 
 .bar {
   height: 100%;
-  background: #111;
+
+  background: #111111;
+
   border-radius: inherit;
+
   min-width: 8px;
 }
 
@@ -544,12 +745,14 @@ button:focus-visible {
 
 .month-summary {
   list-style: none;
+
   margin: 0;
+
   padding: 0;
 }
 
 .month-summary li {
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.65);
 }
 
 .month-summary li:last-child {
@@ -558,27 +761,34 @@ button:focus-visible {
 
 .summary-row {
   width: 100%;
+
   min-height: 52px;
 
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
+
   gap: 12px;
 
   padding: 8px 0;
 
   background: transparent;
+
   border: 0;
 
   color: inherit;
+
   font: inherit;
 
   cursor: pointer;
+
   text-align: left;
 }
 
 .summary-row:hover {
-  background: #fafafa;
+  background: rgba(255, 255, 255, 0.20);
 }
 
 .summary-row strong {
@@ -592,41 +802,54 @@ button:focus-visible {
 
 .choice-grid {
   display: grid;
+
   grid-template-columns: 1fr 1fr;
+
   gap: 8px;
+
   margin-bottom: 16px;
 }
 
 .choice {
   min-height: 46px;
 
-  border: 1px solid var(--border);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+
   border-radius: 11px;
 
-  background: #fff;
+  background: rgba(255, 255, 255, 0.45);
+
   color: #374151;
 
   font-weight: 600;
+
   padding: 8px;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .choice.is-active {
-  background: #111;
-  color: #fff;
-  border-color: #111;
+  background: #111111;
+
+  color: #ffffff;
+
+  border-color: #111111;
 }
 
 .choice:hover:not(.is-active) {
-  background: #f9fafb;
+  background: rgba(255, 255, 255, 0.70);
 }
 
 #report-fields {
   display: flex;
+
   flex-direction: column;
 }
 
 #report-fields label {
   margin: 8px 0 6px;
+
   font-weight: 600;
 }
 
@@ -635,12 +858,20 @@ button:focus-visible {
 }
 
 .preview {
-  background: #f9fafb;
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.42);
+
+  border: 1px solid rgba(255, 255, 255, 0.70);
+
   border-radius: 12px;
+
   padding: 13px;
+
   margin-top: 14px;
+
   margin-bottom: 14px;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .preview p {
@@ -649,18 +880,24 @@ button:focus-visible {
 
 .year-lines {
   list-style: none;
+
   margin: 10px 0;
+
   padding: 0;
-  border-top: 1px solid var(--border);
+
+  border-top: 1px solid rgba(255, 255, 255, 0.65);
 }
 
 .year-lines li {
   display: flex;
+
   justify-content: space-between;
+
   gap: 10px;
 
   padding: 7px 0;
-  border-bottom: 1px solid var(--border);
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.65);
 }
 
 
@@ -685,7 +922,9 @@ button:focus-visible {
   min-height: 100vh;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   padding:
@@ -700,11 +939,13 @@ button:focus-visible {
 
 .login-container {
   width: 100%;
+
   max-width: 420px;
 }
 
 .login-header {
   text-align: center;
+
   margin-bottom: 22px;
 }
 
@@ -714,16 +955,23 @@ button:focus-visible {
 
 .login-header h1 {
   margin: 0;
+
   font-size: 30px;
 }
 
 .login-card {
   width: 100%;
+
+  border-radius: 18px;
+
+  padding: 20px;
 }
 
 .login-card label {
   display: block;
+
   margin: 12px 0 6px;
+
   font-weight: 600;
 }
 
@@ -733,13 +981,23 @@ button:focus-visible {
 
 .login-error {
   color: var(--danger);
-  background: #fef2f2;
-  border: 1px solid #fecaca;
+
+  background: rgba(254, 242, 242, 0.75);
+
+  border: 1px solid rgba(254, 202, 202, 0.85);
+
   border-radius: 10px;
+
   padding: 10px 12px;
+
   margin: 12px 0 0;
+
   font-size: 14px;
+
   font-weight: 600;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .login-error:empty {
@@ -752,17 +1010,20 @@ button:focus-visible {
    ========================================================= */
 
 .auth-card {
-  background: #fff;
-  border: 1px solid var(--border);
   border-radius: 14px;
+
   padding: 14px;
+
   margin-bottom: 14px;
 }
 
 .auth-row {
   display: flex;
+
   align-items: center;
+
   justify-content: space-between;
+
   gap: 10px;
 }
 
@@ -772,26 +1033,35 @@ button:focus-visible {
 
 .auth-user-label {
   color: var(--muted);
+
   font-size: 12px;
+
   font-weight: 700;
+
   text-transform: uppercase;
+
   letter-spacing: 0.05em;
 }
 
 .auth-who {
   margin-top: 2px;
+
   font-weight: 700;
+
   overflow-wrap: anywhere;
 }
 
 .auth-actions {
   display: flex;
+
   gap: 8px;
+
   margin-top: 12px;
 }
 
 .auth-actions .btn {
   width: auto;
+
   flex: 1;
 }
 
@@ -802,13 +1072,17 @@ button:focus-visible {
 
 #sync-status {
   color: var(--muted);
+
   font-size: 13px;
+
   margin: 8px 0 0;
+
   min-height: 18px;
 }
 
 .sync-status {
   color: var(--muted);
+
   font-size: 13px;
 }
 
@@ -827,17 +1101,23 @@ button:focus-visible {
 
 .modal {
   position: fixed;
+
   inset: 0;
 
   z-index: 1000;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   padding: 20px;
 
   background: rgba(0, 0, 0, 0.45);
+
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 .modal[hidden] {
@@ -850,27 +1130,25 @@ button:focus-visible {
 
 .modal-card {
   width: 100%;
+
   max-width: 420px;
 
-  background: #fff;
-
-  border: 1px solid var(--border);
   border-radius: 18px;
 
   padding: 20px;
-
-  box-shadow:
-    0 20px 50px rgba(0, 0, 0, 0.18);
 }
 
 .modal-card h2 {
   font-size: 20px;
+
   letter-spacing: 0;
+
   margin-bottom: 8px;
 }
 
 .modal-card p {
   color: #4b5563;
+
   margin: 0;
 }
 
@@ -880,7 +1158,7 @@ button:focus-visible {
 
 
 /* =========================================================
-   PWA / GENERAL
+   GENERAL
    ========================================================= */
 
 button,
@@ -907,12 +1185,15 @@ select {
 
   body {
     padding-top: 24px;
+
     padding-bottom: 24px;
   }
 
   .app {
     max-width: 560px;
+
     padding-left: 20px;
+
     padding-right: 20px;
   }
 
@@ -927,7 +1208,6 @@ select {
   .choice-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-
 }
 
 
@@ -944,6 +1224,7 @@ select {
 
   .app {
     padding-left: 10px;
+
     padding-right: 10px;
   }
 
@@ -962,7 +1243,6 @@ select {
   .choice-grid {
     grid-template-columns: 1fr;
   }
-
 }
 
 
@@ -976,65 +1256,9 @@ select {
   *::before,
   *::after {
     scroll-behavior: auto !important;
+
     transition: none !important;
+
     animation: none !important;
   }
-
-}
-/* =========================================================
-   GLASSMORPHISM
-   ========================================================= */
-
-body {
-  min-height: 100vh;
-  background-image: url("./expense-background.png");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-}
-
-/* Main glass surfaces */
-.card,
-.auth-card,
-.expense-item,
-.login-card {
-  background: rgba(255, 255, 255, 0.45) !important;
-
-  border: 1px solid rgba(255, 255, 255, 0.8) !important;
-
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.08),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
-
-  backdrop-filter: blur(20px) saturate(140%) !important;
-  -webkit-backdrop-filter: blur(20px) saturate(140%) !important;
-}
-
-/* Glass input fields */
-input,
-select {
-  background: rgba(255, 255, 255, 0.35) !important;
-
-  border: 1px solid rgba(255, 255, 255, 0.75) !important;
-
-  backdrop-filter: blur(15px) !important;
-  -webkit-backdrop-filter: blur(15px) !important;
-
-  box-shadow:
-    inset 0 1px 2px rgba(255, 255, 255, 0.5),
-    0 2px 10px rgba(0, 0, 0, 0.04) !important;
-}
-
-input:focus,
-select:focus {
-  outline: none !important;
-
-  background: rgba(255, 255, 255, 0.55) !important;
-
-  border-color: rgba(17, 17, 17, 0.25) !important;
-
-  box-shadow:
-    0 0 0 3px rgba(17, 17, 17, 0.08),
-    inset 0 1px 2px rgba(255, 255, 255, 0.5) !important;
 }
